@@ -106,7 +106,7 @@
                       <p class="small mb-0">Already have an account? <a href="{{route('login')}}">Log in</a></p>
                     </div>
                   </form>
-
+                  
                 </div>
               </div>
 

@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/components/index', function () {
     return view('index');
 })->name('dashboard');
+
+Route::get('/', function () {
+    return view('user.user');
+})->name('userhome');
+
 
 Route::get('/login', function () {
     return view('Auth.login');
@@ -108,5 +113,12 @@ Route::get('/register', function () {
 Route::post('/register', function () {
     // Handle registration logic
 });
+
+Route::get('/home', [HomeController::class, 'home'])->name('home');
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+
 
 
