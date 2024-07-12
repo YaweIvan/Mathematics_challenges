@@ -118,11 +118,15 @@ public class MathCompetitionClient {
     private void challenges() {
         writer.println("ViewChallenges");
         try {
-            System.out.println("Available Challenges:");
-            String challenge;
-            while ((challenge = reader.readLine()) != null) {
-                System.out.println(challenge);
+            System.out.println("Enter Username:");
+            String userName= scanner.nextLine().trim();
+            writer.println(userName);
+            if (!authenticateStudent(userName)) {
+                output.println("Access denied");
+                return;
             }
+            output.println("Access granted");
+            fetchAndSendChallenges(output);
         } catch (IOException e) {
             e.printStackTrace();
         }

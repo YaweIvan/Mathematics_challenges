@@ -57,7 +57,7 @@ public class MathCompetitionServer {
             e.printStackTrace();
         }
     }
-
+//for representative
     private static void handleConfirmation(BufferedReader input, PrintWriter output) {
         try {
             // Authentication
@@ -138,3 +138,48 @@ public class MathCompetitionServer {
     }
 
 }
+//acces to challege for students
+ private static void handleAccess(BufferedReader input, PrintWriter output) {
+        try {
+            // Authentication
+            String userName = input.readLine();
+            if (!authenticateStudent(userName)) {
+                output.println("Access denied");
+                return;
+            }
+            output.println("Access Granted.");
+        } 
+        catch (IOException e) 
+        {e.printStackTrace();
+            }
+        }
+        private static boolean authenticateStudent(String userName) {
+            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+                String query = "SELECT * FROM participants WHERE userName= ?";
+                try (PreparedStatement statement = connection.prepareStatement(query)) {
+                    statement.setString(1, userName);
+                    
+                    try (ResultSet resultSet = statement.executeQuery()) {
+                        return resultSet.next();
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return false;
+        }
+        private static void fetchAndSendChallenges(PrintWriter output) {
+            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+                String query = "SELECT * FROM challenges";
+                try (Statement statement = connection.createStatement();
+                     ResultSet resultSet = statement.executeQuery(query)) {
+                    while (resultSet.next()) {
+                        String challenge = resultSet.getString("challengeDescription");
+                        output.println(challenge);
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    

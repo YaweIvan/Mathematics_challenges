@@ -18,6 +18,7 @@ class CreateChallengesTable extends Migration
             $table->date('openingDate');
             $table->date('closingDate');
             $table->time('duration');
+            $table->string('challengeDescription');
             $table->string('adminUserName');
             $table-> foreign('adminUserName')->references('adminUserName')->on('administrator')->onDelete('cascade');
         });
