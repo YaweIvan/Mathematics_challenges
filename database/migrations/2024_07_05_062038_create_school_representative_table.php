@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRepresentativeTable extends Migration
+class CreateSchoolRepresentativeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRepresentativeTable extends Migration
      */
     public function up()
     {
-        Schema::create('representative', function (Blueprint $table) {
+        Schema::create('schoolRepresentative', function (Blueprint $table) {
             $table->string('representativeID')->primary();
             $table->string('representativeName');
             $table->string('representativeEmail')->unique();
@@ -33,6 +33,6 @@ class CreateRepresentativeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('representative');
+        Schema::dropIfExists('schoolRepresentative');
     }
 }

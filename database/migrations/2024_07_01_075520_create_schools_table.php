@@ -17,9 +17,9 @@ class CreateSchoolsTable extends Migration
             $table->string('schoolRegistrationNumber')->primary();
             $table->string('schoolName');
             $table->string('district');
-        });      
+           
+        });
     }
-
     /**
      * Reverse the migrations.
      *

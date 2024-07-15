@@ -20,6 +20,8 @@ public class MathCompetitionClient {
             mainMenu();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            closeConnection();
         }
     }
 
@@ -44,9 +46,9 @@ public class MathCompetitionClient {
             } else if ("C".equalsIgnoreCase(choice)) {
                 confirmRejectStudents();
             } else if ("V".equalsIgnoreCase(choice)) {
-                challenges();
+                viewChallenges();
             } else {
-                writer.println(choice);
+                System.out.println("Invalid option. Please try again.");
             }
         }
     }
@@ -103,6 +105,8 @@ public class MathCompetitionClient {
                 return;
             }
 
+            System.out.println(loginResponse); // Authentication successful message
+
             String student;
             while ((student = reader.readLine()) != null && !student.isEmpty()) {
                 System.out.println(student);
@@ -115,24 +119,30 @@ public class MathCompetitionClient {
         }
     }
 
-    private void challenges() {
+    private void viewChallenges() {
         writer.println("ViewChallenges");
         try {
-            System.out.println("Enter Username:");
-            String userName= scanner.nextLine().trim();
+            System.out.print("Enter Username: ");
+            String userName = scanner.nextLine().trim();
             writer.println(userName);
-            if (!authenticateStudent(userName)) {
-                output.println("Access denied");
+
+            String accessResponse = reader.readLine();
+            if ("Access denied".equalsIgnoreCase(accessResponse)) {
+                System.out.println("Access denied.");
                 return;
             }
-            output.println("Access granted");
-            fetchAndSendChallenges(output);
+
+            System.out.println("Access granted. Challenges:");
+            String challenge;
+            while ((challenge = reader.readLine()) != null && !challenge.isEmpty()) {
+                System.out.println(challenge);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-     private void closeConnection() {
+    private void closeConnection() {
         try {
             if (reader != null) reader.close();
             if (writer != null) writer.close();

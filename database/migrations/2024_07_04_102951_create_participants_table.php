@@ -13,10 +13,6 @@ class CreateParticipantsTable extends Migration
      */
     public function up()
     {
-        // Drop the table if it exists
-        Schema::dropIfExists('participants');
-
-        // Create the table
         Schema::create('participants', function (Blueprint $table) {
             $table->string('participantId')->primary();
             $table->string('participantUserName')->unique();
@@ -25,19 +21,11 @@ class CreateParticipantsTable extends Migration
             $table->string('lastName');
             $table->string('participantEmail');
             $table->date('dateOfBirth');
-            $table->unsignedBigInteger('representativeID');
+            $table-> string ('representativeID');
             $table->string('schoolRegistrationNumber');
 
-            $table->foreign('representativeID')
-                  ->references('representativeID')
-                  ->on('schoolRepresentatives') // Assuming the table name is `schoolRepresentatives`
-                  ->onDelete('cascade');
-            $table->foreign('schoolRegistrationNumber')
-                  ->references('schoolRegistrationNumber')
-                  ->on('schools')
-                  ->onDelete('cascade');
-            
-            $table->timestamps();
+            $table->foreign('schoolRegistrationNumber')->references('schoolRegistrationNumber')->on('schools')->onDelete('cascade');
+            $table->foreign('representativeID')->references('representativeID')->on('schoolRepresentative')->onDelete('cascade');
         });
     }
 
@@ -48,11 +36,6 @@ class CreateParticipantsTable extends Migration
      */
     public function down()
     {
-        Schema::table('participants', function (Blueprint $table) {
-            $table->dropForeign(['representativeID']);
-            $table->dropForeign(['schoolRegistrationNumber']);
-        });
-
         Schema::dropIfExists('participants');
     }
 }
