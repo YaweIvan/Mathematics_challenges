@@ -1,15 +1,16 @@
 import java.io.*;
 import java.net.*;
-import java.sql.*;
 import java.util.*;
 
 public class MathCompetitionServer {
     private static final int PORT = 8080;
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/mathematics";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "";
+
+
+
 
     public static void main(String[] args) {
+
+
         System.out.println("Server is starting...");
 
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
@@ -35,30 +36,32 @@ public class MathCompetitionServer {
              PrintWriter output = new PrintWriter(socket.getOutputStream(), true)) {
 
             String choice = input.readLine();
+            System.out.println("Menu Item: " + choice);
 
             switch (choice.toLowerCase()) {
                 case "register":
                     handleRegistration(input, output);
                     break;
-                case "confirmreject":
+                case "confirm/reject students":
                     handleConfirmation(input, output);
                     break;
-                case "access":
-                    handleAccess(input, output);
+                case "view challenges":
+                    DatabaseHandler.handleAccess(input, output);
                     break;
                 default:
-                    output.println("Invalid option");
+                    output.println("Invalid option. Please try again.");
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void handleRegistration(BufferedReader input, PrintWriter output) {
+        protected static void handleRegistration (BufferedReader input, PrintWriter output){
         try {
+
             String userData = input.readLine();
-            saveRegistration(userData);
+            System.out.println("Student Details:" + userData);
+            MathCompetitionServer.saveRegistration(userData);
             output.println("Registration received. Thank you!");
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,20 +69,24 @@ public class MathCompetitionServer {
     }
 
     private static void saveRegistration(String userData) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("registered_students.txt", true)))) {
-            out.println(userData);
+        try (BufferedWriter out = new BufferedWriter(new FileWriter("C:\\Users\\hp\\OneDrive\\Desktop\\mathematics-challenge\\java\\registered_students.txt", true))) {
+            out.write(userData);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Data written to file");
     }
 
     private static void handleConfirmation(BufferedReader input, PrintWriter output) {
         try {
             // Authentication
-            String representativeID = input.readLine();
-            String representativeName = input.readLine();
+            String representativeData = input.readLine();
+            System.out.println("Log In Info:" + representativeData);
+            String[] repData= representativeData.split(" ", 2);
+            String representativeID= repData[0];
+            String representativeName= repData[1];
 
-            if (!authenticateRepresentative(representativeID, representativeName)) {
+            if (!DatabaseHandler.authenticateRepresentative(representativeID, representativeName)) {
                 output.println("Authentication failed. Disconnecting.");
                 return;
             }
@@ -87,7 +94,7 @@ public class MathCompetitionServer {
             output.println("Authentication successful.");
 
             List<String> students = new ArrayList<>();
-            try (BufferedReader reader = new BufferedReader(new FileReader("registered_students.txt"))) {
+            try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\hp\\OneDrive\\Desktop\\mathematics-challenge\\java\\registered_students.txt"))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     students.add(line);
@@ -100,96 +107,19 @@ public class MathCompetitionServer {
                 output.println(student);
                 String decision = input.readLine().trim();
                 if ("A".equalsIgnoreCase(decision)) {
-                    saveToDatabase(student, "participants", representativeID);
+                    DatabaseHandler.saveToDatabase(student, "participants", representativeID);
                 } else if ("R".equalsIgnoreCase(decision)) {
-                    saveToDatabase(student, "rejected", representativeID);
+                    DatabaseHandler.saveToDatabase(student, "rejected", representativeID);
                 }
             }
 
             // Clear the temporary file after processing
-            new PrintWriter("registered_students.txt").close();
+            new PrintWriter("C:\\Users\\hp\\OneDrive\\Desktop\\mathematics-challenge\\java\\registered_students.txt").close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static boolean authenticateRepresentative(String representativeID, String representativeName) {
-        String query = "SELECT * FROM schoolrepresentative WHERE representativeID = ? AND representativeName = ?";
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, representativeID);
-            statement.setString(2, representativeName);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 
-    private static void saveToDatabase(String student, String tableName, String representativeID) {
-        String[] fields = student.split(",");
-        if (fields.length == 6) {
-            String query = "INSERT INTO " + tableName + " (userName, firstName, lastName, email, dateOfBirth, representativeID, schoolRegistrationNumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-                 PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setString(1, fields[0]);
-                statement.setString(2, fields[1]);
-                statement.setString(3, fields[2]);
-                statement.setString(4, fields[3]);
-                statement.setString(5, fields[4]);
-                statement.setString(6, representativeID);
-                statement.setString(7, fields[5]);
-
-                statement.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private static void handleAccess(BufferedReader input, PrintWriter output) {
-        try {
-            // Authentication
-            String userName = input.readLine();
-            if (!authenticateStudent(userName)) {
-                output.println("Access denied");
-                return;
-            }
-            output.println("Access Granted.");
-            fetchAndSendChallenges(output);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static boolean authenticateStudent(String userName) {
-        String query = "SELECT * FROM participants WHERE userName= ?";
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, userName);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    private static void fetchAndSendChallenges(PrintWriter output) {
-        String query = "SELECT * FROM challenges";
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(query)) {
-            while (resultSet.next()) {
-                String challenge = resultSet.getString("challengeDescription");
-                output.println(challenge);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }
