@@ -60,30 +60,40 @@
                 <table class="table table-striped table-bordered" id="datatable">
                   <thead>
                     <tr>
-                      <th>Challenge Name</th>
-                      <th>Start Date</th>
-                      <th>End Date</th>
+                      <th>Challenge ID</th>
+                      <th>Opening Date</th>
+                      <th>Closing Date</th>
                       <th>Number of Questions</th>
                       <th>Status</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Math Competition 2024</td>
-                      <td>2024-08-01</td>
-                      <td>2024-08-15</td>
-                      <td>10</td>
-                      <td>Active</td>
-                      <td>
-                        <a href="#" class="btn btn-sm btn-primary">Open</a>
-                        <a href="#" class="btn btn-sm btn-secondary">Close</a>
-                        <a href="#" class="btn btn-sm btn-info">Edit</a>
-                        <a href="#" class="btn btn-sm btn-success">Analytics</a>
-                      </td>
-                    </tr>
-                    <!-- Add more challenge rows here -->
-                  </tbody>
+    @foreach($challenges as $challenge)
+        <tr>
+            <td>{{ $challenge->challengeID }}</td>
+            <td>{{ $challenge->openingDate }}</td>
+            <td>{{ $challenge->closingDate }}</td>
+            <td>{{ $challenge->number_of_questions }}</td>
+            <td>
+                @if(now() < $challenge->openingDate)
+                    Upcoming
+                @elseif(now() >= $challenge->openingDate && now() <= $challenge->closingDate)
+                    Active
+                @else
+                    Closed
+                @endif
+            </td>
+            <td>
+                <a href="#" class="btn btn-sm btn-primary">Open</a>
+                <a href="#" class="btn btn-sm btn-secondary">Close</a>
+                <a href="#" class="btn btn-sm btn-info">Edit</a>
+                <a href="#" class="btn btn-sm btn-success">Analytics</a>
+            </td>
+        </tr>
+    @endforeach
+</tbody>
+
                 </table>
               </div>
             </div>

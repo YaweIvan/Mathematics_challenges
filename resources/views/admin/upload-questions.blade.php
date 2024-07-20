@@ -57,20 +57,21 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <form action="#" method="POST" enctype="multipart/form-data">
-                            <div class="form-group mb-3">
-                                <label for="challengeName">Challenge Name</label>
-                                <input type="text" class="form-control" id="challengeName" name="challengeName" required>
+                        <form action="{{ route('admin.set-challenge.post') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group mb-3">
+                                <label for="challengeID">Challenge ID</label>
+                                <input type="text" class="form-control" id="challengeID" name="challengeID" required>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="startDate">Start Date</label>
-                                <input type="date" class="form-control" id="startDate" name="startDate" required>
+                                <label for="openingDate">Opening Date</label>
+                                <input type="date" class="form-control" id="openingDate" name="openingDate" required>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="endDate">End Date</label>
-                                <input type="date" class="form-control" id="endDate" name="endDate" required>
+                                <label for="closingDate">Closing Date</label>
+                                <input type="date" class="form-control" id="closingDate" name="closingDate" required>
                             </div>
 
                             <div class="form-group mb-3">
@@ -79,21 +80,13 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="numQuestions">Number of Questions</label>
-                                <input type="number" class="form-control" id="numQuestions" name="numQuestions" required>
+                                <label for="number_of_questions">Number of Questions</label>
+                                <input type="number_of_questions" class="form-control" id="number_of_questions" name="number_of_questions" required>
                             </div>
-
-                            <div class="form-group mb-3">
-                                <label for="questionsFile">Upload Questions File (questions.xlsx)</label>
-                                <input type="file" class="form-control" id="questionsFile" name="questionsFile" accept=".xlsx" required>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="answersFile">Upload Answers File (answers.xlsx)</label>
-                                <input type="file" class="form-control" id="answersFile" name="answersFile" accept=".xlsx" required>
-                            </div>
-
                             <button type="submit" class="btn btn-primary">Set Challenge</button>
+                         
+        <button type="submit" class="btn btn-primary">Upload</button>
+                          
                         </form>
                     </div>
                 </div>

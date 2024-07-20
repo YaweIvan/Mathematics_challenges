@@ -34,9 +34,10 @@
             padding: 20px;
         }
 
-         .logo img{
-        
-         }
+        .logo img {
+    width: 200px; /* Adjust the width as needed */
+    height: auto; /* Keeps the aspect ratio */
+}
 
 
         .header {
@@ -110,10 +111,7 @@
     margin: 0 10px; /* Add some spacing between the icons */
 }
 
-.footer-icons a:hover {
-    color: #f0f0f0; /* Slightly change color on hover for better UX */
-}
-            
+    
         }
         .footer-bottom {
             background-color: #222;
@@ -122,7 +120,8 @@
             font-size: 0.9em;
         }
         .footer-bottom p {
-            margin: 0;
+            text-align: center;
+            margin:0px;
         }
     </style>
 </head>
@@ -136,8 +135,10 @@
     </div>
 
     <div class="header">
-        <div class="logo"><img src=alt=""></div>
-        <h1>Welcome to the Mathematics Challenge</h1>
+    <div class="logo">
+        <img src="{{ asset('assets/img/logo.png') }}" alt="Company Logo">
+    </div>
+        <h1>Welcome to the International Mathematics Challenge</h1>
         <p>Sharpen your skills with exciting challenges and competitions</p>
     </div>
 
@@ -153,11 +154,12 @@
     <footer class="footer">
         <div>
             <h5>About Us</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>MathChallenge is an exciting competition designed to inspire primary school students to excel in mathematics. Participants will tackle stimulating problems that test their problem-solving and critical thinking skills. The competition encourages academic excellence and a positive attitude toward mathematics, providing a platform for students to compete, gain recognition, and develop their talents. Join us in celebrating and nurturing the mathematical minds of the future!</p>
         </div>
         <div>
             <h5>Contact</h5>
-            <p>1234 Street Name<br>City, State, 12345</p>
+            <p>1234 Street Name<br>City, State, 12345<<br>MTC@gmail.ac.ug<br>Tel: +247 23387548<br>Tel: 0333 486367</p>
+            
         </div>
         <div>
             <h5>Follow Us</h5>
@@ -169,8 +171,15 @@
           <a href="#"><i class="fa-brands fa-youtube"></i></a>
           <a href="#"><i class="fa-brands fa-google-plus"></i></a>
             </div>
+            <div class="logo">
+        <img src="{{ asset('assets/img/logo.png') }}" alt="Company Logo">
+    </div>
         </div>
     </footer>
+
+    <div class="footer-bottom">
+        <p>&copy; 2024 Mathematics Challenge. All Rights Reserved.</p>
+    </div>
 
     <div class="footer-bottom">
         <p>&copy; 2024 Mathematics Challenge. All Rights Reserved.</p>

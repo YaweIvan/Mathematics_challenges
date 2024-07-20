@@ -17,15 +17,39 @@
         <span>Set Challenge</span>
       </a>
     </li><!-- End Upload Questions Nav -->
-   
 
+  <!-- Existing sidebar content -->
 
+<li class="nav-item">
+    <a class="nav-link collapsed" href="{{ route('admin.upload-excel-questions') }}">
+        <i class="bi bi-file-earmark-spreadsheet"></i>
+        <span>Upload Excel Questions</span>
+    </a>
+</li><!-- End Upload Excel Questions Nav -->
+
+<!-- Add the new nav item for uploading answers -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="{{ route('admin.upload-excel-answers') }}">
+      <i class="bi bi-file-earmark-spreadsheet"></i>
+      <span>Upload Excel Answers</span>
+    </a>
+  </li><!-- End Upload Excel Answers Nav -->
+
+      </a>
+    </li><!-- End Upload Questions Nav -->
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{ route('admin.manage-schools') }}">
         <i class="bi bi-building"></i>
         <span>Manage Schools</span>
       </a>
     </li><!-- End Manage Schools Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('schools.index') }}">
+        <i class="bi bi-building"></i>
+        <span>Registered Schools</span>
+      </a>
+    </li><!-- End Manage Schools Nav -->
+
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{ route('admin.view-challenge') }}">
