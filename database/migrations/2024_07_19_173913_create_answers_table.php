@@ -14,12 +14,12 @@ class CreateAnswersTable extends Migration
     public function up()
     {
         Schema::create('answers', function (Blueprint $table) {
-            $table->string('answerId')->primary();
-            $table->string('questionId');
-            $table->string('answerText');
-            $table->string('adminUserName');
-            $table->foreign('adminUserName')->references('adminUserName')->on('administrator')->onDelete('cascade');
-            $table->foreign('questionId')->references('questionId')->on('questions')->onDelete('cascade');
+            $table->string('challengeID');
+            $table->string('Answer_ID');
+            $table->string('Answer');
+            $table->timestamps();
+            $table->foreign('challengeID')->references('challengeID')->on('challenge')->onDelete('cascade');
+            
         });
     }
 

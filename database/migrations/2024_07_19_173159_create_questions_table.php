@@ -14,11 +14,11 @@ class CreateQuestionsTable extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
-            $table->string('questionId')->primary();
-            $table->string('questionText');
-            $table->integer('marks');
-            $table->string('adminUserName');
-            $table->foreign('adminUserName')->references('adminUserName')->on('administrator')->onDelete('cascade');
+            $table->string('challengeID');
+            $table->string('Question_ID');
+            $table->string('Question');
+            $table->timestamps();
+            $table->foreign('challengeID')->references('challengeID')->on('challenge')->onDelete('cascade');
         });
     }
 

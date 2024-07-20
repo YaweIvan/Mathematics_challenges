@@ -15,15 +15,12 @@ class CreateSchoolRepresentativeTable extends Migration
     {
         Schema::create('schoolRepresentative', function (Blueprint $table) {
             $table->string('representativeID')->primary();
-            $table->string('representativeName');
-            $table->string('representativeEmail')->unique();
             $table->string('schoolRegistrationNumber');
-            $table->string('adminUserName');
             $table->timestamps();
-
             $table->foreign('schoolRegistrationNumber')->references('schoolRegistrationNumber')->on('schools')->onDelete('cascade');
-            $table->foreign('adminUserName')->references('adminUserName')->on('administrator')->onDelete('cascade');
+            
         });
+    
     }
 
     /**

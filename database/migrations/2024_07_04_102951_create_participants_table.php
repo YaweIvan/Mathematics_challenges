@@ -21,11 +21,15 @@ class CreateParticipantsTable extends Migration
             $table->string('lastName');
             $table->string('participantEmail');
             $table->date('dateOfBirth');
-            $table-> string ('representativeID');
             $table->string('schoolRegistrationNumber');
 
-            $table->foreign('schoolRegistrationNumber')->references('schoolRegistrationNumber')->on('schools')->onDelete('cascade');
-            $table->foreign('representativeID')->references('representativeID')->on('schoolRepresentative')->onDelete('cascade');
+    
+            $table->foreign('schoolRegistrationNumber')
+                  ->references('schoolRegistrationNumber')
+                  ->on('schools')
+                  ->onDelete('cascade');
+            
+            $table->timestamps();
         });
     }
 
