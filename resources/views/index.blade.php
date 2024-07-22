@@ -88,7 +88,7 @@
                       <i class="bi bi-building"></i>
                     </div>
                     <div>
-                      <h6>50</h6>
+                    <p>{{ $totalSchools }}</p>
                     </div>
                   </div>
 
@@ -108,7 +108,7 @@
                       <i class="bi bi-question-circle"></i>
                     </div>
                     <div>
-                      <h6>200</h6>
+                    <p>{{ $totalQuestions }}</p>
                     </div>
                   </div>
 
@@ -128,7 +128,7 @@
                       <i class="bi bi-trophy"></i>
                     </div>
                     <div>
-                      <h6>5</h6>
+                    <p>{{ $ongoingChallenges }}</p>
                     </div>
                   </div>
 
@@ -148,7 +148,7 @@
                       <i class="bi bi-calendar-event"></i>
                     </div>
                     <div>
-                      <h6>10</h6>
+                    <p>{{ $upcomingChallenges }}</p>
                     </div>
                   </div>
 
@@ -156,48 +156,10 @@
               </div>
             </div><!-- End Upcoming Challenges Card -->
 
+
+            
             <!-- Recent Activity Card -->
-            <div class="col-12">
-              <div class="card recent-activity-card">
-
-                <div class="card-body">
-                  <h5 class="card-title">Recent Activity</h5>
-
-                  <div class="activity">
-                    <div class="activity-item d-flex align-items-center">
-                      <div class="activity-icon bg-primary text-white rounded-circle">
-                        <i class="bi bi-upload"></i>
-                      </div>
-                      <div>
-                        <span class="fw-bold text-primary">New Questions Uploaded</span> by Admin
-                        <span class="text-muted small pt-1">2 hours ago</span>
-                      </div>
-                    </div>
-
-                    <div class="activity-item d-flex align-items-center">
-                      <div class="activity-icon bg-success text-white rounded-circle">
-                        <i class="bi bi-trophy"></i>
-                      </div>
-                      <div>
-                        <span class="fw-bold text-success">New Challenge Set</span> by Admin
-                        <span class="text-muted small pt-1">1 day ago</span>
-                      </div>
-                    </div>
-
-                    <div class="activity-item d-flex align-items-center">
-                      <div class="activity-icon bg-warning text-white rounded-circle">
-                        <i class="bi bi-building"></i>
-                      </div>
-                      <div>
-                        <span class="fw-bold text-warning">New School Registered</span> by Admin
-                        <span class="text-muted small pt-1">3 days ago</span>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Recent Activity Card -->
+           
 
           </div>
         </div><!-- End Left Side -->
@@ -209,37 +171,18 @@
           <div class="card notifications-card">
 
             <div class="card-body">
-              <h5 class="card-title">Notifications</h5>
+              <h5 class="card-title">closed challenges</h5>
 
-              <div class="notifications">
-                <div class="notification-item d-flex align-items-center">
-                  <div class="notification-icon bg-info text-white rounded-circle">
-                    <i class="bi bi-info-circle"></i>
+              
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle bg-info text-white">
+                      <i class="bi bi-calendar-event"></i>
+                    </div>
+                    <div>
+                    <p>{{   $finishedChallenges }}</p>
+                    </div>
                   </div>
-                  <div>
-                    <span class="fw-bold text-info">System Update</span> scheduled for tomorrow
-                    <span class="text-muted small pt-1">1 hour ago</span>
-                  </div>
-                </div>
-
-                <div class="notification-item d-flex align-items-center">
-                  <div class="notification-icon bg-danger text-white rounded-circle">
-                    <i class="bi bi-exclamation-circle"></i>
-                  </div>
-                  <div>
-                    <span class="fw-bold text-danger">Server Downtime</span> expected this weekend
-                    <span class="text-muted small pt-1">2 hours ago</span>
-                  </div>
-                </div>
-
-                <div class="notification-item d-flex align-items-center">
-                  <div class="notification-icon bg-success text-white rounded-circle">
-                    <i class="bi bi-check-circle"></i>
-                  </div>
-                  <div>
-                    <span class="fw-bold text-success">Backup Completed</span> successfully
-                    <span class="text-muted small pt-1">4 hours ago</span>
-                  </div>
+ 
                 </div>
               </div>
             </div>
@@ -247,52 +190,7 @@
           </div><!-- End Notifications Card -->
 
           <!-- System Settings Card -->
-          <div class="card settings-card">
-
-            <div class="card-body">
-              <h5 class="card-title">System Settings</h5>
-
-              <div class="settings">
-                <div class="setting-item d-flex align-items-center">
-                  <div class="setting-icon bg-secondary text-white rounded-circle">
-                    <i class="bi bi-gear"></i>
-                  </div>
-                  <div>
-                    <span class="fw-bold text-secondary">General Settings</span>
-                    <span class="text-muted small pt-1">Configure your system</span>
-                  </div>
-                </div>
-
-                <div class="setting-item d-flex align-items-center">
-                  <div class="setting-icon bg-primary text-white rounded-circle">
-                    <i class="bi bi-lock"></i>
-                  </div>
-                  <div>
-                    <span class="fw-bold text-primary">Security Settings</span>
-                    <span class="text-muted small pt-1">Manage security settings</span>
-                  </div>
-                </div>
-
-                <div class="setting-item d-flex align-items-center">
-                  <div class="setting-icon bg-warning text-white rounded-circle">
-                    <i class="bi bi-bell"></i>
-                  </div>
-                  <div>
-                    <span class="fw-bold text-warning">Notification Settings</span>
-                    <span class="text-muted small pt-1">Adjust notification preferences</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- End System Settings Card -->
-
-        </div><!-- End Right Side -->
-
-      </div>
-    </section>
-
-  </main><!-- End #main -->
+          
 
 
 

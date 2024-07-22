@@ -4,7 +4,7 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link " href="{{ route('dashboard') }}">
+    <a class="nav-link " href="{{ route('dashboardss') }}">
       <i class="bi bi-grid"></i>
       <span>Dashboard</span>
     </a>
@@ -40,13 +40,13 @@
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{ route('admin.manage-schools') }}">
         <i class="bi bi-building"></i>
-        <span>Manage Schools</span>
+        <span>Add School</span>
       </a>
     </li><!-- End Manage Schools Nav -->
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{ route('schools.index') }}">
         <i class="bi bi-building"></i>
-        <span>Registered Schools</span>
+        <span>Manage Schools</span>
       </a>
     </li><!-- End Manage Schools Nav -->
 

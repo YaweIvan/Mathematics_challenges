@@ -2,6 +2,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Administrator;
+use App\Models\Question;
+use App\Models\School;
+use App\Models\Challenge;
+
 class AuthController extends Controller
 {
     public function showLoginForm()
@@ -28,8 +32,20 @@ class AuthController extends Controller
     }
     public function Showdashboard()
     {
-        // Check if the user is authenticated via session or Auth
-        return view('index');
+        $totalSchools = School::count();
+        $totalQuestions = Question::count();
+        // Current date
+    $currentDate = now();
+
+    // Fetch counts for challenge statuses based on dates
+    $ongoingChallenges = \App\Models\Challenge::where('openingDate', '<=', $currentDate)
+                                               ->where('closingDate', '>=', $currentDate)
+                                               ->count();
+    $upcomingChallenges = \App\Models\Challenge::where('openingDate', '>', $currentDate)->count();
+    $finishedChallenges = \App\Models\Challenge::where('closingDate', '<', $currentDate)->count();
+                                             
+        // Pass the counts to the view
+        return view('index', compact('totalSchools','totalQuestions','ongoingChallenges','upcomingChallenges','finishedChallenges'));
     }
     public function logout()
     {

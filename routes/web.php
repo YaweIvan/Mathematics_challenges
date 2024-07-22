@@ -55,9 +55,7 @@ Route::prefix('admin')->group(function () {
 
 
 // Miscellaneous Routes
-Route::get('/components/index', function () {
-    return view('index');
-})->name('dashboard');
+
 
 
 // The login to dashboard route
