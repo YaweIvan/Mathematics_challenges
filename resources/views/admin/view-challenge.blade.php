@@ -84,12 +84,17 @@
                     Closed
                 @endif
             </td>
+           
+          
             <td>
-                <a href="#" class="btn btn-sm btn-primary">Open</a>
-                <a href="#" class="btn btn-sm btn-secondary">Close</a>
-                <a href="#" class="btn btn-sm btn-info">Edit</a>
-                <a href="#" class="btn btn-sm btn-success">Analytics</a>
-            </td>
+    <a href="{{ route('admin.challenge.edit', $challenge->challengeID) }}" class="btn btn-sm btn-info">Edit</a>
+    <form action="{{ route('admin.challenge.delete', $challenge->challengeID) }}" method="POST" style="display:inline;">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+    </form>
+</td>
+
         </tr>
     @endforeach
 </tbody>

@@ -50,7 +50,9 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/upload-excel-answers', [ChallengeController::class, 'showExcelAnswersUploadForm'])->name('admin.upload-excel-answers');
     Route::post('/upload-excel-answers', [ChallengeController::class, 'uploadExcelAnswers'])->name('admin.upload-excel-answers.post');
-    
+
+    Route::delete('/delete-challenge/{id}', [ChallengeController::class, 'destroyChallenge'])->name('admin.challenge.delete');
+
     Route::get('/analytics', function () {
         return view('admin.analytics');
     })->name('admin.analytics');

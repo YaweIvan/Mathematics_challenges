@@ -34,6 +34,38 @@ class ChallengeController extends Controller
         $challenges = Challenge::all();
         return view('admin.view-challenge', compact('challenges'));
     }
+
+    public function editChallenge($id)
+    {
+        $challenge = Challenge::findOrFail($id);
+        return view('admin.edit-challenge', compact('challenge'));
+    }
+
+    public function updateChallenge(Request $request, $id)
+    {
+        $request->validate([
+            'openingDate' => 'required|date',
+            'closingDate' => 'required|date|after_or_equal:openingDate',
+            'number_of_questions' => 'required|integer|min:1',
+        ]);
+
+        $challenge = Challenge::findOrFail($id);
+        $challenge->openingDate = $request->input('openingDate');
+        $challenge->closingDate = $request->input('closingDate');
+        $challenge->number_of_questions = $request->input('number_of_questions');
+        $challenge->save();
+
+        return redirect()->route('admin.view-challenge')->with('success', 'Challenge updated successfully');
+    }
+    public function destroyChallenge($id)
+    {
+        $challenge = Challenge::findOrFail($id);
+        $challenge->delete();
+    
+        return redirect()->route('admin.view-challenge')->with('success', 'Challenge deleted successfully');
+    }
+    
+
     // QUESTIONS SECTION
     public function showExcelUploadForm()
     {

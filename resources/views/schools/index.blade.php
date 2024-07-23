@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add School</title>
+    <title>manage schools</title>
 
     <!-- Vendor CSS Files -->
     <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
@@ -126,6 +126,7 @@
                             <button type="submit" class="btn btn-delete">Delete</button>
                         </form>
                     </td>
+                    
                 </tr>
             @endforeach
             </tbody>
