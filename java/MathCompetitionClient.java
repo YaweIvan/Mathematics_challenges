@@ -21,7 +21,7 @@ public class MathCompetitionClient {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            //closeConnection();
+            closeConnection();
         }
     }
     public static void main(String[] args){
@@ -48,42 +48,17 @@ public class MathCompetitionClient {
                     Student.userRegistration(writer, reader, scanner);
                     break;
                 case "confirm/reject students":
-                       Representative.confirmRejectStudents(writer, reader, scanner);
+                    Representative.confirmRejectStudents(writer, reader, scanner);
                     break;
                 case "view challenges":
-                    //  viewChallenges();
+                    Challenge.viewChallenges(writer,reader,scanner);
                     break;
-                default:  System.out.println("Invalid option. Please try again.");
+                default:
+                    System.out.println("Invalid option. Please try again.");
             }
 
-        }
-
-
-
-/*
-    private void viewChallenges() {
-        writer.println("ViewChallenges");
-        try {
-            System.out.print("Enter Username: ");
-            String userName = scanner.nextLine().trim();
-            writer.println(userName);
-
-            String accessResponse = reader.readLine();
-            if ("Access denied".equalsIgnoreCase(accessResponse)) {
-                System.out.println("Access denied.");
-                return;
-            }
-
-            System.out.println("Access granted. Challenges:");
-            String challenge;
-            while ((challenge = reader.readLine()) != null && !challenge.isEmpty()) {
-                System.out.println(challenge);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
-
     private void closeConnection() {
         try {
             if (reader != null) reader.close();
@@ -93,7 +68,6 @@ public class MathCompetitionClient {
             e.printStackTrace();
         }
     }
-*/
+
 
     }
-}
