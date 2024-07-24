@@ -12,6 +12,7 @@ class Question extends Model
     protected $fillable = [
         'challengeID',
         'Question_ID',
-        'Question'
+        'Question',
+        'marks'  // Adjusted to include marks
     ];
 }

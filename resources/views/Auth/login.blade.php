@@ -41,7 +41,7 @@
 <body>
   <main>
     <div class="container">
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4" style="background-color: light blue;">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
@@ -119,7 +119,7 @@
               </div>
 
               <div class="credits">
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                Designed by <a href="https://bootstrapmade.com/">G-8H</a>
               </div>
 
             </div>

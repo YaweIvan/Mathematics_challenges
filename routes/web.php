@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\ChallengeController;
+use App\Http\Controllers\AnalyticsController;
 
 // General Routes
 Route::get('/', function () {
@@ -17,6 +18,9 @@ Route::get('/home', function () {
 // Authentication Routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+// The login to dashboard route
+Route::get('/admin/dashboards', [AuthController::class, 'Showdashboard'])->name('dashboardss');
+
 
 // Admin Routes
 Route::prefix('admin')->group(function () {
@@ -61,5 +65,8 @@ Route::prefix('admin')->group(function () {
 // School Routes
 Route::resource('schools', SchoolController::class);
 
-// The login to dashboard route
-Route::get('/admin/dashboards', [AuthController::class, 'Showdashboard'])->name('dashboardss');
+//ANALYTICS ROUTES
+
+
+Route::get('/admin/analytics', [AnalyticsController::class, 'index'])->name('admin.analytics');
+

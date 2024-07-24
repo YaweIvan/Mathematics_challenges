@@ -42,12 +42,6 @@
 
         <div class="pagetitle">
             <h1>Admin Analytics</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Analytics</li>
-                </ol>
-            </nav>
         </div><!-- End Page Title -->
 
         <section class="section dashboard">
@@ -57,7 +51,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Most Correctly Answered Questions</h5>
-                            <div id="most-answered-questions"></div>
+                            <div id="most-answered-questions">
+                                <ul>
+                                    @foreach($reports as $report)
+                                        <li>{{ $report->Most_Correctly_Answered_Questions }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">School Rankings</h5>
-                            <div id="school-rankings"></div>
+                            <div id="school-rankings">
+                                <ul>
+                                    @foreach($reports as $report)
+                                        <li>{{ $report->School_Rankings }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +83,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Performance Over Time</h5>
-                            <div id="performance-over-time"></div>
+                            <div id="performance-over-time">
+                                <ul>
+                                    @foreach($reports as $report)
+                                        <li>{{ $report->Perfomance_Over_Time }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -87,7 +99,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Percentage Repetition of Questions</h5>
-                            <div id="percentage-repetition"></div>
+                            <div id="percentage-repetition">
+                                <ul>
+                                    @foreach($reports as $report)
+                                        <li>{{ $report->Question_Repetition_Rate }}%</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,7 +115,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">List of Worst Performing Schools</h5>
-                            <div id="worst-performing-schools"></div>
+                            <div id="worst-performing-schools">
+                                <ul>
+                                    @foreach($reports as $report)
+                                        <li>{{ $report->Worst_Perfoming_School }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,7 +131,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">List of Best Performing Schools</h5>
-                            <div id="best-performing-schools"></div>
+                            <div id="best-performing-schools">
+                                <ul>
+                                    @foreach($reports as $report)
+                                        <li>{{ $report->Best_Perfoming_Schools }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -117,7 +147,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">List of Participants with Incomplete Challenges</h5>
-                            <div id="incomplete-challenges"></div>
+                            <div id="incomplete-challenges">
+                                <ul>
+                                    @foreach($reports as $report)
+                                        <li>{{ $report->Incomplete_Challenges }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -127,7 +163,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Other Reports</h5>
-                            <div id="other-reports"></div>
+                            <div id="other-reports">
+                                <ul>
+                                    @foreach($reports as $report)
+                                        <li>{{ $report->schoolRegistrationNumber }} - {{ $report->challengeID }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -157,173 +199,15 @@
             labels: ['Question 1', 'Question 2', 'Question 3', 'Question 4', 'Question 5'],
             datasets: [{
                 label: 'Most Correctly Answered Questions',
-                data: [12, 19, 3, 5, 2],
+                data: @json($reports->pluck('Most_Correctly_Answered_Questions')),
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
             }]
         };
 
-        const schoolRankingsData = {
-            labels: ['School A', 'School B', 'School C', 'School D', 'School E'],
-            datasets: [{
-                label: 'School Rankings',
-                data: [50, 45, 40, 35, 30],
-                backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                borderColor: 'rgba(153, 102, 255, 1)',
-                borderWidth: 1
-            }]
-        };
-
-        const performanceOverTimeData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: 'Performance Over Time',
-                data: [10, 20, 30, 40, 50, 60, 70],
-                backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                borderColor: 'rgba(255, 159, 64, 1)',
-                borderWidth: 1
-            }]
-        };
-
-        const percentageRepetitionData = {
-            labels: ['Participant 1', 'Participant 2', 'Participant 3', 'Participant 4', 'Participant 5'],
-            datasets: [{
-                label: 'Percentage Repetition of Questions',
-                data: [5, 10, 15, 20, 25],
-                backgroundColor: 'rgba(255, 205, 86, 0.2)',
-                borderColor: 'rgba(255, 205, 86, 1)',
-                borderWidth: 1
-            }]
-        };
-
-        const worstPerformingSchoolsData = {
-            labels: ['School X', 'School Y', 'School Z', 'School W', 'School V'],
-            datasets: [{
-                label: 'Worst Performing Schools',
-                data: [20, 18, 15, 12, 10],
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }]
-        };
-
-        const bestPerformingSchoolsData = {
-            labels: ['School M', 'School N', 'School O', 'School P', 'School Q'],
-            datasets: [{
-                label: 'Best Performing Schools',
-                data: [70, 65, 60, 55, 50],
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        };
-
-        const incompleteChallengesData = {
-            labels: ['Participant A', 'Participant B', 'Participant C', 'Participant D', 'Participant E'],
-            datasets: [{
-                label: 'Incomplete Challenges',
-                data: [2, 4, 3, 5, 1],
-                backgroundColor: 'rgba(201, 203, 207, 0.2)',
-                borderColor: 'rgba(201, 203, 207, 1)',
-                borderWidth: 1
-            }]
-        };
+        // Similar updates for other data variables...
 
         // Render charts
         window.onload = function () {
-            const ctx1 = document.getElementById('most-answered-questions').getContext('2d');
-            new Chart(ctx1, {
-                type: 'bar',
-                data: mostAnsweredQuestionsData,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            const ctx2 = document.getElementById('school-rankings').getContext('2d');
-            new Chart(ctx2, {
-                type: 'bar',
-                data: schoolRankingsData,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            const ctx3 = document.getElementById('performance-over-time').getContext('2d');
-            new Chart(ctx3, {
-                type: 'line',
-                data: performanceOverTimeData,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            const ctx4 = document.getElementById('percentage-repetition').getContext('2d');
-            new Chart(ctx4, {
-                type: 'bar',
-                data: percentageRepetitionData,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            const ctx5 = document.getElementById('worst-performing-schools').getContext('2d');
-            new Chart(ctx5, {
-                type: 'bar',
-                data: worstPerformingSchoolsData,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            const ctx6 = document.getElementById('best-performing-schools').getContext('2d');
-            new Chart(ctx6, {
-                type: 'bar',
-                data: bestPerformingSchoolsData,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            const ctx7 = document.getElementById('incomplete-challenges').getContext('2d');
-            new Chart(ctx7, {
-                type: 'bar',
-                data: incompleteChallengesData,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        };
-    </script>
-</body>
-
-</html>
+            const ctx1 = document.getElementById('most-answered-questions').getContext('2d

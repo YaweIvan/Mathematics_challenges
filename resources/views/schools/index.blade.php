@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>manage schools</title>
+    <title>Manage Schools</title>
 
     <!-- Vendor CSS Files -->
     <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
@@ -22,13 +22,11 @@
             font-weight: bold;
         }
         .btn-primary {
-            background-color: #0061f2;
-            border-color: #0061f2;
+      background-color: #0061f2;
+      border-color: #0061f2;
         }
-        .btn-primary:hover {
-            background-color: #004bbd;
-            border-color: #004bbd;
-        }
+       
+    
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -73,11 +71,11 @@
             border-radius: 3px;
         }
         .btn-edit {
-            background-color: #4CAF50;
+            background-color: #4CAF50; /* Green */
             color: white;
         }
         .btn-delete {
-            background-color: #f44336;
+            background-color: #f44336; /* Red */
             color: white;
         }
     </style>
@@ -89,11 +87,11 @@
 
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Registered schools</h1>
+            <h1>Registered Schools</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Register SChools</li>
+                    <li class="breadcrumb-item active">Registered Schools</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -126,7 +124,6 @@
                             <button type="submit" class="btn btn-delete">Delete</button>
                         </form>
                     </td>
-                    
                 </tr>
             @endforeach
             </tbody>

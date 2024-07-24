@@ -14,18 +14,19 @@ class CreateRejectedTable extends Migration
     public function up()
     {
         Schema::create('rejected', function (Blueprint $table) {
-            $table->string('rejectStudentId')->primary();
-            $table->string('rejectStudentName')->unique();
+            $table->string('Username')  ->primary();;
             $table->binary('image');
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('rejectStudentEmail');
+            $table->string('participantEmail');
             $table->date('dateOfBirth');
-            $table-> string ('representativeID');
             $table->string('schoolRegistrationNumber');
-
-            $table->foreign('schoolRegistrationNumber')->references('schoolRegistrationNumber')->on('schools')->onDelete('cascade');
-            $table->foreign('representativeID')->references('representativeID')->on('schoolRepresentative')->onDelete('cascade');
+            $table->timestamps();
+    
+            $table->foreign('schoolRegistrationNumber')
+                  ->references('schoolRegistrationNumber')
+                  ->on('schools')
+                  ->onDelete('cascade');
         });
     }
 

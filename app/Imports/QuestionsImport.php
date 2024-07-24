@@ -10,7 +10,8 @@ class QuestionsImport implements ToModel, WithHeadingRow
         return new Question([
             'challengeID' => $row['challengeid'],
             'Question_ID' => $row['question_id'],
-            'Question' => $row['question']
+            'Question' => $row['question'],
+            'marks' => $row['marks']  // Adjusted to include marks
         ]);
     }
 }

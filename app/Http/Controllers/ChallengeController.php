@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Imports\QuestionsImport;
-use App\Imports\ImportAnswers; // Correct import
+use App\Imports\ImportAnswers;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Challenge;
 use App\Models\Answer;
@@ -29,6 +29,7 @@ class ChallengeController extends Controller
         ]);
         return redirect()->route('admin.view-challenge')->with('success', 'Challenge set successfully');
     }
+
     public function viewChallenges()
     {
         $challenges = Challenge::all();
@@ -57,20 +58,21 @@ class ChallengeController extends Controller
 
         return redirect()->route('admin.view-challenge')->with('success', 'Challenge updated successfully');
     }
+
     public function destroyChallenge($id)
     {
         $challenge = Challenge::findOrFail($id);
         $challenge->delete();
-    
+
         return redirect()->route('admin.view-challenge')->with('success', 'Challenge deleted successfully');
     }
-    
 
     // QUESTIONS SECTION
     public function showExcelUploadForm()
     {
         return view('excelQuestions');
     }
+
     public function uploadQuestions(Request $request)
     {
         $request->validate([
@@ -81,18 +83,19 @@ class ChallengeController extends Controller
         Excel::import(new QuestionsImport, $file);
         return back()->with('success', 'Questions uploaded successfully.');
     }
+
     // ANSWERS SECTION
     public function showExcelAnswersUploadForm()
     {
         return view('excelAnswer');
     }
+
     public function uploadExcelAnswers(Request $request)
     {
         $request->validate([
             'answersFile' => 'required|file|mimes:xlsx'
         ]);
         $file = $request->file('answersFile');
-        // Use the import class to handle the file
         Excel::import(new ImportAnswers, $file);
         return redirect()->route('admin.upload-excel-answers')->with('success', 'Answers have been successfully uploaded.');
     }

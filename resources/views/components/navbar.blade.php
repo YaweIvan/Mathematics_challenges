@@ -41,7 +41,7 @@
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
-            <h6>OPIS.A</h6>
+            <h6>DRATE</h6>
             <span>Admin-MTC</span>
           </li>
           <li>
@@ -53,12 +53,12 @@
             <hr class="dropdown-divider">
           </li>
           
-          <li class="nav-item">
+         <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('login') }}">
               <i class="bi bi-box-arrow-in-right"></i>
               <span>Login</span>
             </a>
-          </li><!-- End Login Page Nav -->
+          </li> End Login Page Nav -->
 
           <li>
             <a class="dropdown-item d-flex align-items-center" href="{{ route('userhome') }}">

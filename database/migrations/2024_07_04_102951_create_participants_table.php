@@ -14,22 +14,21 @@ class CreateParticipantsTable extends Migration
     public function up()
     {
         Schema::create('participants', function (Blueprint $table) {
-            $table->string('participantId')->primary();
-            $table->string('participantUserName')->unique();
+            $table->string('Username')  ->primary();
             $table->binary('image');
             $table->string('firstName');
             $table->string('lastName');
             $table->string('participantEmail');
             $table->date('dateOfBirth');
             $table->string('schoolRegistrationNumber');
-
+            $table->timestamps();
     
             $table->foreign('schoolRegistrationNumber')
                   ->references('schoolRegistrationNumber')
                   ->on('schools')
                   ->onDelete('cascade');
             
-            $table->timestamps();
+           
         });
     }
 
