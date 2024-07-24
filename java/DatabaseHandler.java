@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.*;
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 public class DatabaseHandler {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/mathematics";
@@ -47,12 +48,13 @@ public class DatabaseHandler {
         try {
             // Authentication
             String userName = input.readLine();
+            System.out.println(userName);
             if (!authenticateStudent(userName)) {
                 output.println("Access denied");
                 return;
             }
             output.println("Access Granted.");
-            fetchAndSendChallenges(output);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -72,18 +74,5 @@ public class DatabaseHandler {
         return false;
     }
 
-    protected static void fetchAndSendChallenges(PrintWriter output) {
-        String query = "SELECT * FROM challenges";
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(query)) {
-            while (resultSet.next()) {
-                String challenge = resultSet.getString("challengeDescription");
-                output.println(challenge);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
 }
