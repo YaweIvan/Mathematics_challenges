@@ -1,0 +1,2 @@
+username: Opis , firstname: Opiro , lastname: Adrine , emailaddress: adrinehox@gmail.com , dateofbirth(dd-mm-yyyy): 2002-04-15 , schoolregistrationnumber: Sch001 , imagepath: C:\Users\HP\Downloads\pexels-blaque-x-264516-863963.jpg
+username: jojo , firstname: Joyce , lastname: Rita , emailaddress: joritace@gmail.com , dateofbirth(dd-mm-yyyy): 2003-03-03 , schoolregistrationnumber: Sch001 , imagepath: C:\Users\hp\OneDrive\Desktop\ROCK\fire\src\main\java\hil\download.jpeg 
