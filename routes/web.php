@@ -70,3 +70,10 @@ Route::resource('schools', SchoolController::class);
 
 Route::get('/admin/analytics', [AnalyticsController::class, 'index'])->name('admin.analytics');
 
+
+
+//REPORTS CONTROLLERS
+use App\Http\Controllers\ReportController;
+
+Route::get('/admin/reports/{challengeID}', [ReportController::class, 'showReports'])->name('admin.reports');
+Route::post('/admin/generate-reports/{challengeID}', [ReportController::class, 'generateReports'])->name('admin.generate-reports');

@@ -81,7 +81,7 @@
                 @method('PUT')
                 <div class="form-group">
                     <label for="schoolRegistrationNumber">School Registration Number</label>
-                    <input type="text" id="schoolRegistrationNumber" name="schoolRegistrationNumber" value="{{ $school->schoolRegistrationNumber }}" readonly>
+                    <input type="text" id="schoolRegistrationNumber" name="schoolRegistrationNumber" value="{{ $school->schoolRegistrationNumber }}" >
                 </div>
                 <div class="form-group">
                     <label for="schoolName">School Name</label>

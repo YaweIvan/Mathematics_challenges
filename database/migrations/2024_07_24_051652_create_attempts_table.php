@@ -15,6 +15,7 @@ class CreateAttemptsTable extends Migration
     {
         Schema::create('attempts', function (Blueprint $table) {
             $table->integer('attemptID')->primary();
+            $table->string('Username');
             $table->string('challengeID');
             $table->decimal('score');
             $table->integer('timeTaken');

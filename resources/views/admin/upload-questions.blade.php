@@ -85,7 +85,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Set Challenge</button>
                          
-        <button type="submit" class="btn btn-primary">Upload</button>
+       
                           
                         </form>
                     </div>

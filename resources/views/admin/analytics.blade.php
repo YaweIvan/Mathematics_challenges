@@ -162,13 +162,13 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Other Reports</h5>
-                            <div id="other-reports">
-                                <ul>
-                                    @foreach($reports as $report)
-                                        <li>{{ $report->schoolRegistrationNumber }} - {{ $report->challengeID }}</li>
-                                    @endforeach
-                                </ul>
+                        <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('admin.reports', ['challengeID' => 1]) }}">
+        <i class="bi bi-bar-chart"></i>
+        <span>Report</span>
+      </a>
+    </li><!-- End View Analytics Nav -->
+
                             </div>
                         </div>
                     </div>

@@ -14,6 +14,7 @@ class CreateReportTable extends Migration
     public function up()
     {
         Schema::create('report', function (Blueprint $table) {
+            $table->string('Username');
             $table->string('schoolRegistrationNumber');
             $table->string('challengeID');
             $table->string('Most_Correctly_Answered_Questions');
@@ -26,6 +27,7 @@ class CreateReportTable extends Migration
             $table->timestamps();
             $table->foreign('schoolRegistrationNumber')->references('schoolRegistrationNumber')->on('schools')->onDelete('cascade');
             $table->foreign('challengeID')->references('challengeID')->on('challenge')->onDelete('cascade');
+            $table->foreign('Username')->references('Username')->on('participants')->onDelete('cascade');
         });
     }
 
