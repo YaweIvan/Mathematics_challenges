@@ -1,4 +1,0 @@
-jojo,Joyce,Rita,joyce@gmail.com,2006-06-06,x12345
-eddy,edward,collins,edwaed@gmail.com,2010-03-03,z1234
-kiki,Kathy,Luu,kiki@gmail.com,2014-12-12,v1234
-kim,Kimberly,Lin,kimlin@gmail.com,2013-04-09,x12345
